@@ -1,79 +1,78 @@
+
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 
 
 const CardDiv = styled.div`
-   width: 200px;
-   position: relative;
-   display: flex;
-   align-items: center;
-   flex-direction: column;
-  
+    width: 15em;
+    height: 25em;
+    position: relative;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    background-color: beige;
+    border: 2px solid black;
+    box-shadow: 0px 3px 14px 6px rgba(0,0,0,0.49);
+   -webkit-box-shadow: 0px 3px 14px 6px rgba(0,0,0,0.49);
+   -moz-box-shadow: 0px 3px 14px 6px rgba(0,0,0,0.49);
+    
 `;
 
-const BottomDiv = styled.div`
-   width: 100%;
-   height: auto;
-   
-   border-bottom-left-radius: 10px;
-   border-bottom-right-radius: 10px;
-   background-color: #c6c6c6;
-   display: flex;
-   justify-content: space-around;
-   align-items: center;
- 
-`;
+const DetailDiv = styled.div`
+    position: absolute;
+    top: 6em;
+    width: 8em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-const SubTitles = styled.h2`
-   font-size: medium;
-`
-
-const Yellow = styled.h2`
-   font-size: small;
-   background-color: yellow;
-   padding: 0px 15px;
-   position: absolute;
-   bottom: 40px;
-   left: 0;
-   margin-left: 5px;
-   
-   
+    h2{
+      font-size: large;
+      font-weight: 700;
+    }
+    
 `
 
 const XButton = styled.button`
-   background-color: red;
-   border: none;
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    background-color: transparent;
+    position: relative;
+    top: 3%;
+    left: 45%;
+`
+
+const CharImage = styled.img`
+   width: 12em;
+   height: 15em;
+   border-radius: 5px;
    position: absolute;
-   top: 0;
-   right: 0;
-   
-   
-  
-`
-
-const BackImage = styled.img`
-   max-width: 100%;
+   top: 5.3em;
+   left: 60%;
+   box-shadow: -7px 10px 13px 2px rgba(0,0,0,0.49);
+-webkit-box-shadow: -7px 10px 13px 2px rgba(0,0,0,0.49);
+-moz-box-shadow: -7px 10px 13px 2px rgba(0,0,0,0.49);
 `
 
 
-
-
-export default function Card({name,status, species,gender,origin,image,onClose }) {
+export default function Card({name,status, species,gender,origin,image,onClose,id }) {
    return (
       <CardDiv>
-         <XButton onClick={onClose}>X</XButton>
-         <Yellow>{name}</Yellow>
-         {/*<h2>{status}</h2>*/}
-         {/*<h2>{origin}</h2>*/}
-         <BackImage src={image} alt='img' /> 
-         <BottomDiv>
-         <SubTitles>{species}</SubTitles>
-         <SubTitles>{gender}</SubTitles>
-         </BottomDiv>
+        <XButton onClick={onClose}>X</XButton>
+        <DetailDiv>
+            <h2>{id}</h2>
+            <Link to={`/detail/${id}`}>
+               <h2>{name}</h2>
+            </Link>
+            <h2>{gender}</h2>
+
+        </DetailDiv>
+        <CharImage src={image} alt={name}/>
+         
       </CardDiv>
    );
 }
-
 
 
 /*
